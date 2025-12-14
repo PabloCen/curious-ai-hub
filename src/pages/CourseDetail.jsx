@@ -5,92 +5,7 @@ import {
   CheckCircle, PlayCircle, FileText, Award, ChevronDown, ChevronUp 
 } from 'lucide-react';
 import Header from '../components/layout/Header';
-import CustomCursor from '../components/ui/CustomCursor';
-
-// ============================================
-// 📚 DATA DE EJEMPLO (después viene de Supabase)
-// ============================================
-const courseDetailData = {
-  1: {
-    id: 1,
-    title: "Fundamentos de IA",
-    description: "Aprende los conceptos básicos de Inteligencia Artificial, Machine Learning y Deep Learning desde cero. Este curso te dará las bases sólidas para entender cómo funcionan las IAs modernas.",
-    fullDescription: "En este curso completo, explorarás el fascinante mundo de la Inteligencia Artificial desde sus fundamentos hasta aplicaciones prácticas. Aprenderás qué es realmente la IA, cómo funciona el Machine Learning, y las diferencias entre distintos tipos de modelos. No necesitas conocimientos previos de programación.",
-    category: "Fundamentos",
-    level: "Principiante",
-    duration: "2 semanas",
-    modules: 2,
-    students: 1234,
-    rating: 4.9,
-    price: 0,
-    badge: "GRATIS",
-    thumbnail: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=1200&q=80",
-    instructor: {
-      name: "Curious AI Team",
-      avatar: "https://api.dicebear.com/7.x/bottts/svg?seed=ai",
-      bio: "Equipo de expertos en IA con más de 10 años de experiencia"
-    },
-    whatYouLearn: [
-      "Conceptos fundamentales de IA, ML y Deep Learning",
-      "Diferencias entre tipos de Inteligencia Artificial",
-      "Historia y evolución de la IA",
-      "Casos de uso reales en distintas industrias",
-      "Principales herramientas de IA del mercado",
-      "Ética y limitaciones de la IA actual"
-    ],
-    modules: [
-      {
-        id: 1,
-        title: "Módulo 1: ¿Qué es la IA?",
-        duration: "1 semana",
-        lessons: [
-          { id: 1, title: "Historia de la Inteligencia Artificial", type: "video", duration: "10 min" },
-          { id: 2, title: "Conceptos básicos: IA vs ML vs Deep Learning", type: "reading", duration: "15 min" },
-          { id: 3, title: "Tipos de IA: débil vs fuerte", type: "video", duration: "12 min" },
-          { id: 4, title: "Casos de uso actuales", type: "reading", duration: "8 min" }
-        ],
-        assignment: {
-          title: "TP1: Cuestionario - Identificar tipos de IA",
-          questions: 10,
-          passingScore: 70
-        }
-      },
-      {
-        id: 2,
-        title: "Módulo 2: Ecosistema de IAs",
-        duration: "1 semana",
-        lessons: [
-          { id: 5, title: "Principales herramientas: ChatGPT, MidJourney, etc.", type: "video", duration: "20 min" },
-          { id: 6, title: "IA por industria: salud, finanzas, educación", type: "reading", duration: "15 min" },
-          { id: 7, title: "Ética y sesgos en IA", type: "video", duration: "18 min" },
-          { id: 8, title: "Limitaciones actuales de la IA", type: "reading", duration: "10 min" }
-        ],
-        assignment: {
-          title: "TP2: Relacionar herramientas con casos de uso",
-          questions: 10,
-          passingScore: 70
-        }
-      }
-    ],
-    finalExam: {
-      title: "Examen Final",
-      questions: 20,
-      passingScore: 75,
-      duration: "45 min"
-    },
-    certificate: {
-      name: "Certificado: Fundamentos de IA",
-      format: "PDF Digital",
-      verification: "Código único de verificación"
-    }
-  },
-  // MÁS CURSOS SE AGREGAN ACÁ...
-
-
-
-
-  
-};
+import { coursesData } from '../data/coursesData';
 
 // ============================================
 // 🎨 COMPONENTE: MODULE ACCORDION
@@ -132,16 +47,18 @@ const ModuleAccordion = ({ module, index, darkMode }) => {
             </div>
           ))}
 
-          {/* Trabajo Práctico */}
-          <div className="assignment-item">
-            <CheckCircle className="w-4 h-4 text-emerald-400" />
-            <div>
-              <span className="assignment-title">{module.assignment.title}</span>
-              <span className="assignment-details">
-                {module.assignment.questions} preguntas • Aprobación: {module.assignment.passingScore}%
-              </span>
+          {/* Trabajo Práctico (si existe) */}
+          {module.assignment && (
+            <div className="assignment-item">
+              <CheckCircle className="w-4 h-4 text-emerald-400" />
+              <div>
+                <span className="assignment-title">{module.assignment.title}</span>
+                <span className="assignment-details">
+                  {module.assignment.questions} preguntas • Aprobación: {module.assignment.passingScore}%
+                </span>
+              </div>
             </div>
-          </div>
+          )}
         </div>
       )}
     </div>
@@ -156,17 +73,54 @@ const CourseDetail = () => {
   const { id } = useParams();
   const [darkMode, setDarkMode] = useState(false);
 
-  // Obtener data del curso (después desde Supabase)
-  const course = courseDetailData[id] || courseDetailData[1];
+  // Obtener data del curso
+  // First try to find by ID (string or number matching)
+  const course = coursesData.find(c => String(c.id) === id);
 
   // Scroll al inicio
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, []);
 
+  if (!course) {
+    return (
+        <div className="min-h-screen bg-[#0a0a0a] text-white flex items-center justify-center flex-col gap-4">
+            <h1 className="text-2xl font-bold">Curso no encontrado</h1>
+            <button
+              className="px-4 py-2 bg-[#22d3ee] text-black rounded-lg hover:bg-[#22d3ee]/80 transition-colors"
+              onClick={() => navigate('/courses')}
+            >
+              Volver a cursos
+            </button>
+        </div>
+    );
+  }
+
+  // Fallbacks for optional fields
+  const instructor = course.instructor || {
+    name: "Curioso AI Team",
+    avatar: "https://api.dicebear.com/7.x/bottts/svg?seed=ai",
+    bio: "Equipo de expertos en IA"
+  };
+
+  const whatYouLearn = course.whatYouLearn || ["Fundamentos de IA", "Casos de uso", "Herramientas prácticas"];
+
+  // Create default final exam and certificate objects if they don't exist in data
+  const finalExam = course.finalExam || {
+    title: "Examen Final",
+    questions: 10,
+    passingScore: 70,
+    duration: "30 min"
+  };
+
+  const certificate = course.certificate || {
+    name: `Certificado: ${course.title}`,
+    format: "PDF Digital",
+    verification: "Código único de verificación"
+  };
+
   return (
     <>
-      <CustomCursor />
       <div className={`course-detail-page ${darkMode ? 'dark-mode' : 'light-mode'}`}>
         <Header />
 
@@ -195,9 +149,12 @@ const CourseDetail = () => {
           <div className="course-hero-detail">
             {/* Imagen */}
             <div className="course-hero-image">
-              <img src={course.thumbnail} alt={course.title} />
-              <span className={`course-badge-detail badge-${course.badge.toLowerCase()}`}>
-                {course.badge}
+              <img src={course.thumbnail} alt={course.title} onError={(e) => {
+                  e.target.onerror = null;
+                  e.target.src = `https://ui-avatars.com/api/?name=${course.title}&background=random&color=fff&size=512`;
+              }} />
+              <span className={`course-badge-detail badge-${course.badge ? course.badge.toLowerCase() : 'gratis'}`}>
+                {course.badge || 'GRATIS'}
               </span>
             </div>
 
@@ -213,7 +170,7 @@ const CourseDetail = () => {
               <div className="course-meta-detail">
                 <div className="meta-item-detail">
                   <Star className="w-5 h-5 fill-amber-400 text-amber-400" />
-                  <span><strong>{course.rating}</strong> ({course.students.toLocaleString()} estudiantes)</span>
+                  <span><strong>{course.rating || '4.5'}</strong> ({course.students ? course.students.toLocaleString() : '100+'} estudiantes)</span>
                 </div>
                 <div className="meta-item-detail">
                   <Clock className="w-5 h-5" />
@@ -221,7 +178,7 @@ const CourseDetail = () => {
                 </div>
                 <div className="meta-item-detail">
                   <BookOpen className="w-5 h-5" />
-                  <span>{course.modules.length} módulos</span>
+                  <span>{course.modules ? course.modules.length : 0} módulos</span>
                 </div>
               </div>
 
@@ -241,11 +198,11 @@ const CourseDetail = () => {
 
               {/* Instructor */}
               <div className="instructor-card-detail">
-                <img src={course.instructor.avatar} alt={course.instructor.name} />
+                <img src={instructor.avatar} alt={instructor.name} />
                 <div>
                   <span className="instructor-label">Instructor</span>
-                  <h4>{course.instructor.name}</h4>
-                  <p>{course.instructor.bio}</p>
+                  <h4>{instructor.name}</h4>
+                  <p>{instructor.bio}</p>
                 </div>
               </div>
             </div>
@@ -255,7 +212,7 @@ const CourseDetail = () => {
           <div className="what-learn-section">
             <h2>¿Qué aprenderás?</h2>
             <div className="learn-grid">
-              {course.whatYouLearn.map((item, index) => (
+              {whatYouLearn.map((item, index) => (
                 <div key={index} className="learn-item">
                   <CheckCircle className="w-5 h-5 text-emerald-400" />
                   <span>{item}</span>
@@ -268,7 +225,7 @@ const CourseDetail = () => {
           <div className="course-content-section">
             <h2>Contenido del Curso</h2>
             <div className="modules-container">
-              {course.modules.map((module, index) => (
+              {course.modules && course.modules.map((module, index) => (
                 <ModuleAccordion 
                   key={module.id} 
                   module={module} 
@@ -281,8 +238,8 @@ const CourseDetail = () => {
               <div className={`final-exam-card ${darkMode ? 'dark' : ''}`}>
                 <Award className="w-6 h-6 text-amber-400" />
                 <div>
-                  <h3>{course.finalExam.title}</h3>
-                  <p>{course.finalExam.questions} preguntas • {course.finalExam.duration} • Aprobación: {course.finalExam.passingScore}%</p>
+                  <h3>{finalExam.title}</h3>
+                  <p>{finalExam.questions} preguntas • {finalExam.duration} • Aprobación: {finalExam.passingScore}%</p>
                 </div>
               </div>
 
@@ -290,23 +247,25 @@ const CourseDetail = () => {
               <div className={`certificate-card ${darkMode ? 'dark' : ''}`}>
                 <Award className="w-6 h-6 text-purple-400" />
                 <div>
-                  <h3>{course.certificate.name}</h3>
-                  <p>{course.certificate.format} con {course.certificate.verification}</p>
+                  <h3>{certificate.name}</h3>
+                  <p>{certificate.format} con {certificate.verification}</p>
                 </div>
               </div>
             </div>
           </div>
 
           {/* Full Description */}
-          <div className="full-description-section">
-            <h2>Descripción Completa</h2>
-            <p>{course.fullDescription}</p>
-          </div>
+          {course.fullDescription && (
+            <div className="full-description-section">
+                <h2>Descripción Completa</h2>
+                <p>{course.fullDescription}</p>
+            </div>
+          )}
 
           {/* CTA Final */}
           <div className="final-cta-section">
             <h2>¿Listo para empezar?</h2>
-            <p>Únete a {course.students.toLocaleString()} estudiantes que ya están aprendiendo</p>
+            <p>Únete a {course.students ? course.students.toLocaleString() : 'muchos'} estudiantes que ya están aprendiendo</p>
             <button className="enroll-btn-large" data-cursor='active'>
               {course.price === 0 ? 'Inscribirme Gratis Ahora' : `Comprar por $${course.price}`}
             </button>

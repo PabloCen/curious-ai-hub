@@ -144,11 +144,8 @@ body {
     opacity: 1;
   }
 }
-html,
-body,
-* {
-  cursor: none !important;
-}
+/* Removed global cursor none to fix navigation issues */
+/* Cursor handling is now managed by CustomCursor component */
 /* === TOP IAS – GLASS PREMIUM CON LUZ DE LÁMPARA === */
 /* Fondo azul profundo limpio */
 .topias-section {

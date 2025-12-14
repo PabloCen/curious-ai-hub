@@ -1,0 +1,257 @@
+[
+  {
+    "id": "news-1765678151193-0",
+    "title": "Noticia Generada #1: Avances importantes en Industria",
+    "slug": "noticia-generada-1-avances-industria",
+    "category": "Industria",
+    "summary": "Este es un resumen automático simulando una noticia real sobre Industria. La IA sigue avanzando a pasos agigantados y esta noticia cubre los últimos detalles importantes.",
+    "content": "\n        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>\n        <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>\n        <p>La tecnología detrás de este avance promete revolucionar el sector de Industria. Expertos aseguran que veremos más cambios en los próximos meses.</p>\n      ",
+    "sourceName": "TechCrunch AI",
+    "sourceUrl": "https://techcrunch.com/category/artificial-intelligence/",
+    "imageUrl": "/images/news/placeholder-1.jpg",
+    "tags": [
+      "Microsoft",
+      "OpenAI"
+    ],
+    "publishedAt": "2025-12-12T21:09:11.164Z",
+    "readingTime": 6
+  },
+  {
+    "id": "news-1765678151234-1",
+    "title": "Noticia Generada #2: Avances importantes en Investigación",
+    "slug": "noticia-generada-2-avances-investigación",
+    "category": "Investigación",
+    "summary": "Este es un resumen automático simulando una noticia real sobre Investigación. La IA sigue avanzando a pasos agigantados y esta noticia cubre los últimos detalles importantes.",
+    "content": "\n        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>\n        <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>\n        <p>La tecnología detrás de este avance promete revolucionar el sector de Investigación. Expertos aseguran que veremos más cambios en los próximos meses.</p>\n      ",
+    "sourceName": "Wired",
+    "sourceUrl": "https://www.wired.com/tag/artificial-intelligence/",
+    "imageUrl": "/images/news/placeholder-2.jpg",
+    "tags": [
+      "Google",
+      "Regulación"
+    ],
+    "publishedAt": "2025-12-13T04:09:11.234Z",
+    "readingTime": 9
+  },
+  {
+    "id": "news-1765678151234-2",
+    "title": "Noticia Generada #3: Avances importantes en Industria",
+    "slug": "noticia-generada-3-avances-industria",
+    "category": "Industria",
+    "summary": "Este es un resumen automático simulando una noticia real sobre Industria. La IA sigue avanzando a pasos agigantados y esta noticia cubre los últimos detalles importantes.",
+    "content": "\n        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>\n        <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>\n        <p>La tecnología detrás de este avance promete revolucionar el sector de Industria. Expertos aseguran que veremos más cambios en los próximos meses.</p>\n      ",
+    "sourceName": "Wired",
+    "sourceUrl": "https://www.wired.com/tag/artificial-intelligence/",
+    "imageUrl": "/images/news/placeholder-3.jpg",
+    "tags": [
+      "OpenAI",
+      "Google"
+    ],
+    "publishedAt": "2025-12-13T17:09:11.234Z",
+    "readingTime": 7
+  },
+  {
+    "id": "news-1765678151234-3",
+    "title": "Noticia Generada #4: Avances importantes en Investigación",
+    "slug": "noticia-generada-4-avances-investigación",
+    "category": "Investigación",
+    "summary": "Este es un resumen automático simulando una noticia real sobre Investigación. La IA sigue avanzando a pasos agigantados y esta noticia cubre los últimos detalles importantes.",
+    "content": "\n        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>\n        <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>\n        <p>La tecnología detrás de este avance promete revolucionar el sector de Investigación. Expertos aseguran que veremos más cambios en los próximos meses.</p>\n      ",
+    "sourceName": "The Verge",
+    "sourceUrl": "https://www.theverge.com/ai-artificial-intelligence",
+    "imageUrl": "/images/news/placeholder-4.jpg",
+    "tags": [
+      "Robótica",
+      "Midjourney"
+    ],
+    "publishedAt": "2025-12-13T02:09:11.234Z",
+    "readingTime": 10
+  },
+  {
+    "id": "news-1765678151234-4",
+    "title": "Noticia Generada #5: Avances importantes en Investigación",
+    "slug": "noticia-generada-5-avances-investigación",
+    "category": "Investigación",
+    "summary": "Este es un resumen automático simulando una noticia real sobre Investigación. La IA sigue avanzando a pasos agigantados y esta noticia cubre los últimos detalles importantes.",
+    "content": "\n        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>\n        <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>\n        <p>La tecnología detrás de este avance promete revolucionar el sector de Investigación. Expertos aseguran que veremos más cambios en los próximos meses.</p>\n      ",
+    "sourceName": "OpenAI Blog",
+    "sourceUrl": "https://openai.com/blog",
+    "imageUrl": "/images/news/placeholder-5.jpg",
+    "tags": [
+      "Regulación",
+      "Microsoft"
+    ],
+    "publishedAt": "2025-12-14T01:09:11.234Z",
+    "readingTime": 6
+  },
+  {
+    "id": "news-1765678151234-5",
+    "title": "Noticia Generada #6: Avances importantes en Investigación",
+    "slug": "noticia-generada-6-avances-investigación",
+    "category": "Investigación",
+    "summary": "Este es un resumen automático simulando una noticia real sobre Investigación. La IA sigue avanzando a pasos agigantados y esta noticia cubre los últimos detalles importantes.",
+    "content": "\n        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>\n        <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>\n        <p>La tecnología detrás de este avance promete revolucionar el sector de Investigación. Expertos aseguran que veremos más cambios en los próximos meses.</p>\n      ",
+    "sourceName": "Wired",
+    "sourceUrl": "https://www.wired.com/tag/artificial-intelligence/",
+    "imageUrl": "/images/news/placeholder-1.jpg",
+    "tags": [
+      "Robótica",
+      "Microsoft"
+    ],
+    "publishedAt": "2025-12-12T05:09:11.234Z",
+    "readingTime": 10
+  },
+  {
+    "id": "news-1765678151234-6",
+    "title": "Noticia Generada #7: Avances importantes en Noticias Generales",
+    "slug": "noticia-generada-7-avances-noticias-generales",
+    "category": "Noticias Generales",
+    "summary": "Este es un resumen automático simulando una noticia real sobre Noticias Generales. La IA sigue avanzando a pasos agigantados y esta noticia cubre los últimos detalles importantes.",
+    "content": "\n        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>\n        <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>\n        <p>La tecnología detrás de este avance promete revolucionar el sector de Noticias Generales. Expertos aseguran que veremos más cambios en los próximos meses.</p>\n      ",
+    "sourceName": "OpenAI Blog",
+    "sourceUrl": "https://openai.com/blog",
+    "imageUrl": "/images/news/placeholder-2.jpg",
+    "tags": [
+      "Google",
+      "Regulación"
+    ],
+    "publishedAt": "2025-12-13T15:09:11.234Z",
+    "readingTime": 5
+  },
+  {
+    "id": "news-1765678151234-7",
+    "title": "Noticia Generada #8: Avances importantes en Herramientas",
+    "slug": "noticia-generada-8-avances-herramientas",
+    "category": "Herramientas",
+    "summary": "Este es un resumen automático simulando una noticia real sobre Herramientas. La IA sigue avanzando a pasos agigantados y esta noticia cubre los últimos detalles importantes.",
+    "content": "\n        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>\n        <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>\n        <p>La tecnología detrás de este avance promete revolucionar el sector de Herramientas. Expertos aseguran que veremos más cambios en los próximos meses.</p>\n      ",
+    "sourceName": "The Verge",
+    "sourceUrl": "https://www.theverge.com/ai-artificial-intelligence",
+    "imageUrl": "/images/news/placeholder-3.jpg",
+    "tags": [
+      "Microsoft",
+      "Google"
+    ],
+    "publishedAt": "2025-12-13T18:09:11.234Z",
+    "readingTime": 6
+  },
+  {
+    "id": "news-1765678151234-8",
+    "title": "Noticia Generada #9: Avances importantes en Investigación",
+    "slug": "noticia-generada-9-avances-investigación",
+    "category": "Investigación",
+    "summary": "Este es un resumen automático simulando una noticia real sobre Investigación. La IA sigue avanzando a pasos agigantados y esta noticia cubre los últimos detalles importantes.",
+    "content": "\n        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>\n        <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>\n        <p>La tecnología detrás de este avance promete revolucionar el sector de Investigación. Expertos aseguran que veremos más cambios en los próximos meses.</p>\n      ",
+    "sourceName": "The Verge",
+    "sourceUrl": "https://www.theverge.com/ai-artificial-intelligence",
+    "imageUrl": "/images/news/placeholder-4.jpg",
+    "tags": [
+      "OpenAI",
+      "Regulación"
+    ],
+    "publishedAt": "2025-12-13T01:09:11.234Z",
+    "readingTime": 8
+  },
+  {
+    "id": "news-1765678151234-9",
+    "title": "Noticia Generada #10: Avances importantes en Industria",
+    "slug": "noticia-generada-10-avances-industria",
+    "category": "Industria",
+    "summary": "Este es un resumen automático simulando una noticia real sobre Industria. La IA sigue avanzando a pasos agigantados y esta noticia cubre los últimos detalles importantes.",
+    "content": "\n        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>\n        <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>\n        <p>La tecnología detrás de este avance promete revolucionar el sector de Industria. Expertos aseguran que veremos más cambios en los próximos meses.</p>\n      ",
+    "sourceName": "TechCrunch AI",
+    "sourceUrl": "https://techcrunch.com/category/artificial-intelligence/",
+    "imageUrl": "/images/news/placeholder-5.jpg",
+    "tags": [
+      "Regulación",
+      "Google"
+    ],
+    "publishedAt": "2025-12-13T23:09:11.234Z",
+    "readingTime": 4
+  },
+  {
+    "id": "news-1765678151234-10",
+    "title": "Noticia Generada #11: Avances importantes en Industria",
+    "slug": "noticia-generada-11-avances-industria",
+    "category": "Industria",
+    "summary": "Este es un resumen automático simulando una noticia real sobre Industria. La IA sigue avanzando a pasos agigantados y esta noticia cubre los últimos detalles importantes.",
+    "content": "\n        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>\n        <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>\n        <p>La tecnología detrás de este avance promete revolucionar el sector de Industria. Expertos aseguran que veremos más cambios en los próximos meses.</p>\n      ",
+    "sourceName": "Wired",
+    "sourceUrl": "https://www.wired.com/tag/artificial-intelligence/",
+    "imageUrl": "/images/news/placeholder-1.jpg",
+    "tags": [
+      "OpenAI",
+      "Regulación"
+    ],
+    "publishedAt": "2025-12-14T00:09:11.234Z",
+    "readingTime": 8
+  },
+  {
+    "id": "news-1765678151234-11",
+    "title": "Noticia Generada #12: Avances importantes en Herramientas",
+    "slug": "noticia-generada-12-avances-herramientas",
+    "category": "Herramientas",
+    "summary": "Este es un resumen automático simulando una noticia real sobre Herramientas. La IA sigue avanzando a pasos agigantados y esta noticia cubre los últimos detalles importantes.",
+    "content": "\n        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>\n        <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>\n        <p>La tecnología detrás de este avance promete revolucionar el sector de Herramientas. Expertos aseguran que veremos más cambios en los próximos meses.</p>\n      ",
+    "sourceName": "OpenAI Blog",
+    "sourceUrl": "https://openai.com/blog",
+    "imageUrl": "/images/news/placeholder-2.jpg",
+    "tags": [
+      "Regulación",
+      "Microsoft"
+    ],
+    "publishedAt": "2025-12-12T13:09:11.234Z",
+    "readingTime": 2
+  },
+  {
+    "id": "news-1765678151234-12",
+    "title": "Noticia Generada #13: Avances importantes en Herramientas",
+    "slug": "noticia-generada-13-avances-herramientas",
+    "category": "Herramientas",
+    "summary": "Este es un resumen automático simulando una noticia real sobre Herramientas. La IA sigue avanzando a pasos agigantados y esta noticia cubre los últimos detalles importantes.",
+    "content": "\n        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>\n        <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>\n        <p>La tecnología detrás de este avance promete revolucionar el sector de Herramientas. Expertos aseguran que veremos más cambios en los próximos meses.</p>\n      ",
+    "sourceName": "Wired",
+    "sourceUrl": "https://www.wired.com/tag/artificial-intelligence/",
+    "imageUrl": "/images/news/placeholder-3.jpg",
+    "tags": [
+      "OpenAI",
+      "Robótica"
+    ],
+    "publishedAt": "2025-12-12T20:09:11.234Z",
+    "readingTime": 6
+  },
+  {
+    "id": "news-1765678151234-13",
+    "title": "Noticia Generada #14: Avances importantes en Industria",
+    "slug": "noticia-generada-14-avances-industria",
+    "category": "Industria",
+    "summary": "Este es un resumen automático simulando una noticia real sobre Industria. La IA sigue avanzando a pasos agigantados y esta noticia cubre los últimos detalles importantes.",
+    "content": "\n        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>\n        <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>\n        <p>La tecnología detrás de este avance promete revolucionar el sector de Industria. Expertos aseguran que veremos más cambios en los próximos meses.</p>\n      ",
+    "sourceName": "TechCrunch AI",
+    "sourceUrl": "https://techcrunch.com/category/artificial-intelligence/",
+    "imageUrl": "/images/news/placeholder-4.jpg",
+    "tags": [
+      "Regulación",
+      "Midjourney"
+    ],
+    "publishedAt": "2025-12-12T13:09:11.234Z",
+    "readingTime": 2
+  },
+  {
+    "id": "news-1765678151234-14",
+    "title": "Noticia Generada #15: Avances importantes en Industria",
+    "slug": "noticia-generada-15-avances-industria",
+    "category": "Industria",
+    "summary": "Este es un resumen automático simulando una noticia real sobre Industria. La IA sigue avanzando a pasos agigantados y esta noticia cubre los últimos detalles importantes.",
+    "content": "\n        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>\n        <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>\n        <p>La tecnología detrás de este avance promete revolucionar el sector de Industria. Expertos aseguran que veremos más cambios en los próximos meses.</p>\n      ",
+    "sourceName": "Wired",
+    "sourceUrl": "https://www.wired.com/tag/artificial-intelligence/",
+    "imageUrl": "/images/news/placeholder-5.jpg",
+    "tags": [
+      "Google",
+      "Microsoft"
+    ],
+    "publishedAt": "2025-12-13T05:09:11.234Z",
+    "readingTime": 5
+  }
+]

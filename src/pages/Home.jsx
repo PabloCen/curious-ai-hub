@@ -4,17 +4,13 @@ import Header from "../components/layout/Header";
 import Hero from "../components/sections/Hero";
 import WordCarousel from "../components/sections/WordCarousel";
 import TopIAs from "../components/sections/TopIAs";
-import Tools from "../components/sections/Tools";
+import ToolsPreview from "../components/sections/ToolsPreview";
 import Courses from "../components/sections/Courses";
-import Quiz from "../components/sections/Quiz";
 import NewsSection from "../components/sections/NewsSection";
-import CustomCursor from "../components/ui/CustomCursor";
 
 function Home() {
   return (
     <>
-      <CustomCursor />
-
       <div className="min-h-screen bg-[#0a0a0a] text-[#e0e0e0] font-sans">
         <Header />
 
@@ -22,8 +18,7 @@ function Home() {
           <Hero />
           <WordCarousel />
           <TopIAs />
-          <Tools />
-          <Quiz />
+          <ToolsPreview />
           <Courses />
           <NewsSection />
         </main>
