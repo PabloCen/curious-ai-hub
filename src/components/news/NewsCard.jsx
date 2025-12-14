@@ -1,8 +1,10 @@
 // src/components/news/NewsCard.jsx
 import React from "react";
 import { Link } from "react-router-dom";
+import { ExternalLink } from "lucide-react";
 
 const formatDate = (iso) => {
+  if (!iso) return "";
   return new Date(iso).toLocaleDateString("es-AR", {
     day: "2-digit",
     month: "short",
@@ -11,49 +13,64 @@ const formatDate = (iso) => {
 };
 
 const NewsCard = ({ item }) => {
+  // Use a reliable fallback if image is missing
+  const imageUrl = item.imageUrl || `https://placehold.co/600x400/1a1a1a/FFF?text=${encodeURIComponent(item.category || 'AI News')}`;
+
   return (
-    <Link to={`/news/${item.slug}`} className="block group">
-      <article className="relative overflow-hidden rounded-2xl bg-slate-900/80 border border-slate-700/60 hover:border-violet-400/80 transition-all duration-300 shadow-lg hover:shadow-[0_0_40px_rgba(139,92,246,0.4)]">
-        {/* Contenido */}
-        <div className="p-5 flex flex-col gap-3">
-          {/* Categoría + fecha */}
-          <div className="flex items-center justify-between gap-2 text-[11px] uppercase tracking-wide">
-            <span className="inline-flex items-center px-2 py-0.5 rounded-full bg-violet-500/10 text-violet-300 border border-violet-500/30">
-              {item.category}
-            </span>
-            <span className="text-slate-400">{formatDate(item.publishedAt)}</span>
+    <Link to={`/news/${item.slug}`} className="block group h-full">
+      <article className="relative h-full flex flex-col overflow-hidden rounded-2xl bg-[#131313] border border-white/5 hover:border-[#9d4edd]/50 transition-all duration-300 shadow-lg group-hover:shadow-[0_0_30px_rgba(157,78,221,0.2)]">
+
+        {/* Image Section */}
+        <div className="h-48 overflow-hidden relative">
+           <img
+             src={imageUrl}
+             alt={item.title}
+             className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+             onError={(e) => {
+               e.target.src = `https://placehold.co/600x400/1a1a1a/FFF?text=AI+News`;
+             }}
+           />
+           <div className="absolute inset-0 bg-gradient-to-t from-[#131313] to-transparent opacity-60" />
+
+           {/* Category Badge over Image */}
+           <div className="absolute top-3 left-3">
+             <span className="inline-flex items-center px-2.5 py-1 rounded-md bg-black/60 backdrop-blur-md border border-white/10 text-[10px] font-bold uppercase tracking-wider text-[#22d3ee]">
+                {item.category || 'General'}
+             </span>
+           </div>
+        </div>
+
+        {/* Content */}
+        <div className="p-5 flex flex-col flex-grow gap-3">
+          {/* Meta info */}
+          <div className="flex items-center justify-between text-xs text-gray-500">
+             <span>{item.sourceName || 'Fuente externa'}</span>
+             <span>{formatDate(item.publishedAt)}</span>
           </div>
 
-          {/* Título */}
-          <h3 className="text-lg font-semibold text-white leading-snug group-hover:text-violet-200 transition-colors">
+          {/* Title */}
+          <h3 className="text-lg font-bold text-white leading-tight group-hover:text-[#9d4edd] transition-colors line-clamp-2">
             {item.title}
           </h3>
 
-          {/* Resumen */}
-          <p className="text-sm text-slate-300 line-clamp-3">
+          {/* Summary */}
+          <p className="text-sm text-gray-400 line-clamp-3 flex-grow">
             {item.summary}
           </p>
 
-          {/* Tags + tiempo lectura */}
-          <div className="mt-2 flex items-center justify-between gap-2">
-            <div className="flex flex-wrap gap-1">
-              {item.tags?.slice(0, 3).map((tag) => (
-                <span
-                  key={tag}
-                  className="px-2 py-[2px] rounded-full bg-slate-800 text-[11px] text-slate-300"
-                >
-                  #{tag}
-                </span>
-              ))}
+          {/* Footer */}
+          <div className="pt-4 mt-auto border-t border-white/5 flex items-center justify-between">
+            <div className="flex gap-2">
+               {item.tags?.slice(0, 2).map(tag => (
+                   <span key={tag} className="text-[10px] text-gray-500">#{tag}</span>
+               ))}
             </div>
-            <span className="text-[11px] text-slate-400">
-              {item.readingTime} min
+
+            <span className="flex items-center gap-1 text-xs font-semibold text-white group-hover:text-[#22d3ee] transition-colors">
+                Leer más <ExternalLink className="w-3 h-3" />
             </span>
           </div>
         </div>
-
-        {/* Línea de brillo abajo */}
-        <div className="h-1 bg-gradient-to-r from-cyan-400 via-fuchsia-500 to-violet-500 opacity-60 group-hover:opacity-100 transition-opacity" />
       </article>
     </Link>
   );

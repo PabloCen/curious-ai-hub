@@ -1,6 +1,9 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
 import { Helmet } from "react-helmet";
+import { AuthProvider } from "./context/AuthContext";
+import ProtectedRoute from "./components/auth/ProtectedRoute";
+import CustomCursor from "./components/ui/CustomCursor";
 
 // Pages
 import Home from "./pages/Home";
@@ -12,20 +15,26 @@ import CourseDetail from './pages/CourseDetail';
 import NewsPage from "./pages/NewsPage";
 import NewsDetail from "./pages/NewsDetail";
 
-function App() {
+function AppContent() {
+  const location = useLocation();
+  // Custom Cursor should only appear on Home (/), Login (/login), Register (/register)
+  const showCursor = ["/", "/login", "/register"].includes(location.pathname);
+
   return (
-    <Router>
+    <>
       <Helmet>
         <title>Curious AI Hub - Descubre el Futuro de la IA</title>
         <meta
           name="description"
           content="Noticias, herramientas y curiosidades de IA explicadas fácil, en un solo lugar."
-        />s
+        />
         <meta
           name="keywords"
           content="inteligencia artificial, ia, herramientas de ia, curiosidades, cursos de ia"
         />
       </Helmet>
+
+      {showCursor && <CustomCursor />}
 
       <Routes>
         <Route path="/" element={<Home />} />
@@ -34,14 +43,27 @@ function App() {
         <Route path="/tools" element={<ToolsPage />} />
         <Route path="/courses" element={<CoursesPage />} /> 
         <Route path="/courses/:id" element={<CourseDetail />} />
-       <Route path="/news" element={<NewsPage />} />
+        <Route path="/news" element={<NewsPage />} />
         <Route path="/news/:slug" element={<NewsDetail />} />
 
+        {/* Example of protected route (Dashboard not yet implemented but structure is ready) */}
+        {/* <Route element={<ProtectedRoute />}>
+             <Route path="/dashboard" element={<Dashboard />} />
+           </Route>
+        */}
       </Routes>
-    </Router>
+    </>
   );
+}
 
-
+function App() {
+  return (
+    <AuthProvider>
+      <Router>
+        <AppContent />
+      </Router>
+    </AuthProvider>
+  );
 }
 
 

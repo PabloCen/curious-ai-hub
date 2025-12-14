@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Search, Moon, Sun, BookOpen, Clock, Star, ArrowLeft, Filter, X } from 'lucide-react';
 import Header from '../components/layout/Header';
-import CustomCursor from '../components/ui/CustomCursor';
 import { coursesData, courseLevels, courseCategories } from '../data/coursesData';
 
 // ============================================
@@ -116,7 +115,6 @@ const CoursesPage = () => {
 
   return (
     <div className={`courses-page-full ${darkMode ? 'dark-mode' : 'light-mode'}`}>
-      <CustomCursor />
       <Header />
 
       {/* Container con padding-top para el header fijo */}
