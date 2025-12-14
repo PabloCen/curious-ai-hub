@@ -5,7 +5,6 @@ import {
   CheckCircle, PlayCircle, FileText, Award, ChevronDown, ChevronUp 
 } from 'lucide-react';
 import Header from '../components/layout/Header';
-import CustomCursor from '../components/ui/CustomCursor';
 import { coursesData } from '../data/coursesData';
 
 // ============================================
@@ -122,7 +121,6 @@ const CourseDetail = () => {
 
   return (
     <>
-      <CustomCursor />
       <div className={`course-detail-page ${darkMode ? 'dark-mode' : 'light-mode'}`}>
         <Header />
 

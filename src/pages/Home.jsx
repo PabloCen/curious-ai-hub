@@ -7,13 +7,10 @@ import TopIAs from "../components/sections/TopIAs";
 import ToolsPreview from "../components/sections/ToolsPreview";
 import Courses from "../components/sections/Courses";
 import NewsSection from "../components/sections/NewsSection";
-import CustomCursor from "../components/ui/CustomCursor";
 
 function Home() {
   return (
     <>
-      <CustomCursor />
-
       <div className="min-h-screen bg-[#0a0a0a] text-[#e0e0e0] font-sans">
         <Header />
 

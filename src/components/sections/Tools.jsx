@@ -30,7 +30,7 @@ const Tools = () => {
   };
 
   return (
-    <section className="py-20 px-4 bg-[#0a0a0a] min-h-screen">
+    <section className="py-20 px-4 min-h-screen bg-transparent">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center mb-12">

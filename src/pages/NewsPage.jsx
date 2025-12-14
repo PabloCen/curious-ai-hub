@@ -53,10 +53,14 @@ const NewsPage = () => {
   }, [category, search, news]);
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a] text-white flex flex-col">
+    <div className="min-h-screen bg-gradient-to-b from-[#0f0a1e] via-[#050816] to-[#020617] text-white flex flex-col relative overflow-hidden">
+      {/* Background Accents */}
+      <div className="absolute top-0 right-1/4 w-[500px] h-[500px] bg-purple-900/10 rounded-full blur-[120px] -z-10 pointer-events-none" />
+      <div className="absolute bottom-1/3 left-0 w-[600px] h-[600px] bg-indigo-900/10 rounded-full blur-[150px] -z-10 pointer-events-none" />
+
       <Header />
 
-      <main className="flex-grow pt-24 pb-16 px-4">
+      <main className="flex-grow pt-24 pb-16 px-4 relative z-10">
         <div className="max-w-7xl mx-auto">
           {/* HERO */}
           <section className="mb-12 text-center md:text-left">
@@ -79,7 +83,7 @@ const NewsPage = () => {
           </section>
 
           {/* CONTROLS */}
-          <section className="mb-8 bg-[#1a1a1a] rounded-2xl p-4 border border-white/5 shadow-lg">
+          <section className="mb-8 bg-[#1a1a1a]/50 backdrop-blur-sm rounded-2xl p-4 border border-white/5 shadow-lg">
             <div className="flex flex-col md:flex-row gap-4 items-center justify-between">
 
               {/* Categorías */}
@@ -111,7 +115,7 @@ const NewsPage = () => {
                   placeholder="Buscar noticias..."
                   value={search}
                   onChange={(e) => setSearch(e.target.value)}
-                  className="w-full pl-10 pr-4 py-2 rounded-lg bg-[#0a0a0a] border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:border-[#9d4edd] focus:ring-1 focus:ring-[#9d4edd] transition-all"
+                  className="w-full pl-10 pr-4 py-2 rounded-lg bg-[#0a0a0a]/50 border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:border-[#9d4edd] focus:ring-1 focus:ring-[#9d4edd] transition-all"
                 />
               </div>
             </div>
