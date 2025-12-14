@@ -10,6 +10,7 @@ export const toolsData = [
     logo: '/images/tools/chatgpt.png',
     pricing: 'Freemium',
     rating: 4.8,
+    difficulty: 'Básico',
     url: 'https://chat.openai.com',
     badges: ['Popular', 'Destacado'],
     features: [
@@ -49,6 +50,7 @@ export const toolsData = [
     logo: '/images/tools/claude.png',
     pricing: 'Freemium',
     rating: 4.7,
+    difficulty: 'Básico',
     url: 'https://claude.ai',
     badges: ['Nuevo', 'Destacado'],
     features: [
@@ -83,6 +85,7 @@ export const toolsData = [
     logo: '/images/tools/gemini.png',
     pricing: 'Gratis',
     rating: 4.6,
+    difficulty: 'Básico',
     url: 'https://gemini.google.com',
     badges: ['Gratis'],
     features: [
@@ -119,6 +122,7 @@ export const toolsData = [
     logo: '/images/tools/midjourney.png',
     pricing: 'Premium',
     rating: 4.9,
+    difficulty: 'Intermedio',
     url: 'https://midjourney.com',
     badges: ['Popular', 'Premium'],
     features: [
@@ -155,6 +159,7 @@ export const toolsData = [
     logo: '/images/tools/dalle.png',
     pricing: 'Freemium',
     rating: 4.7,
+    difficulty: 'Básico',
     url: 'https://openai.com/dall-e-3',
     badges: ['Destacado'],
     features: [
@@ -189,6 +194,7 @@ export const toolsData = [
     logo: '/images/tools/stable-diffusion.png',
     pricing: 'Gratis',
     rating: 4.5,
+    difficulty: 'Avanzado',
     url: 'https://stability.ai',
     badges: ['Gratis', 'Open Source'],
     features: [
@@ -226,6 +232,7 @@ export const toolsData = [
     logo: '/images/tools/runway.png',
     pricing: 'Freemium',
     rating: 4.8,
+    difficulty: 'Intermedio',
     url: 'https://runwayml.com',
     badges: ['Popular', 'Destacado'],
     features: [
@@ -261,6 +268,7 @@ export const toolsData = [
     logo: '/images/tools/synthesia.png',
     pricing: 'Premium',
     rating: 4.6,
+    difficulty: 'Básico',
     url: 'https://synthesia.io',
     badges: ['Premium'],
     features: [
@@ -298,6 +306,7 @@ export const toolsData = [
     logo: '/images/tools/copilot.png',
     pricing: 'Premium',
     rating: 4.7,
+    difficulty: 'Intermedio',
     url: 'https://github.com/features/copilot',
     badges: ['Popular'],
     features: [
@@ -333,6 +342,7 @@ export const toolsData = [
     logo: '/images/tools/cursor.png',
     pricing: 'Freemium',
     rating: 4.8,
+    difficulty: 'Avanzado',
     url: 'https://cursor.sh',
     badges: ['Nuevo', 'Destacado'],
     features: [
@@ -370,6 +380,7 @@ export const toolsData = [
     logo: '/images/tools/elevenlabs.png',
     pricing: 'Freemium',
     rating: 4.9,
+    difficulty: 'Básico',
     url: 'https://elevenlabs.io',
     badges: ['Popular', 'Destacado'],
     features: [
@@ -407,6 +418,7 @@ export const toolsData = [
     logo: '/images/tools/notion.png',
     pricing: 'Freemium',
     rating: 4.6,
+    difficulty: 'Básico',
     url: 'https://notion.so/product/ai',
     badges: ['Destacado'],
     features: [
@@ -444,6 +456,7 @@ export const toolsData = [
     logo: '/images/tools/canva.png',
     pricing: 'Freemium',
     rating: 4.7,
+    difficulty: 'Básico',
     url: 'https://canva.com',
     badges: ['Popular'],
     features: [
@@ -481,6 +494,7 @@ export const toolsData = [
     logo: '/images/tools/julius.png',
     pricing: 'Freemium',
     rating: 4.5,
+    difficulty: 'Intermedio',
     url: 'https://julius.ai',
     badges: ['Nuevo'],
     features: [
@@ -529,4 +543,12 @@ export const pricingFilters = [
   { id: 'Gratis', name: 'Gratis' },
   { id: 'Freemium', name: 'Freemium' },
   { id: 'Premium', name: 'Premium' }
+];
+
+// Filtros de dificultad
+export const difficultyFilters = [
+  { id: 'all', name: 'Todas' },
+  { id: 'Básico', name: 'Básico' },
+  { id: 'Intermedio', name: 'Intermedio' },
+  { id: 'Avanzado', name: 'Avanzado' }
 ];
