@@ -144,9 +144,9 @@ body {
     opacity: 1;
   }
 }
-html,
-body,
-* {
+/* Managed by CustomCursor component */
+html.custom-cursor-active,
+html.custom-cursor-active * {
   cursor: none !important;
 }
 /* === TOP IAS – GLASS PREMIUM CON LUZ DE LÁMPARA === */

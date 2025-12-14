@@ -1,9 +1,10 @@
 // src/pages/NewsDetail.jsx
 import React, { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
-import { newsData } from "../data/newsData";
+import { newsData as staticNews } from "../data/newsData";
 import Header from "../components/layout/Header";
 import Footer from "../components/layout/Footer";
+import { ArrowLeft, Clock, ExternalLink } from "lucide-react";
 
 const formatDate = (iso) => {
   if (!iso) return "";
@@ -19,64 +20,72 @@ const NewsDetail = () => {
   const [article, setArticle] = useState(null);
   const [related, setRelated] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
+
+  // Constants
+  const API_URL = "http://localhost:5000/api/news";
 
   useEffect(() => {
-    const findArticle = async () => {
+    const fetchArticle = async () => {
       setLoading(true);
+      setError(false);
 
-      // 1. Try static data first
-      let found = newsData.find((n) => n.slug === slug);
-      let allNews = newsData;
+      try {
+        // 1. Try Backend API first
+        const res = await fetch(`${API_URL}/${slug}`);
+        if (res.ok) {
+            const data = await res.json();
+            setArticle(data);
 
-      // 2. If not found, try dynamic data
-      if (!found) {
-        try {
-            const res = await fetch('/data/news.json');
-            if (res.ok) {
-                const dynamicNews = await res.json();
-                found = dynamicNews.find(n => n.slug === slug);
-                allNews = dynamicNews; // Use dynamic news for related items if article is dynamic
+            // Fetch related (optional, simple logic: fetch recent with same category)
+            // Ideally backend provides this, but let's mock related or fetch list
+            // For speed, skipping extra fetch for related, or using static for related.
+        } else {
+            // 2. Fallback to static data
+            const staticFound = staticNews.find(n => n.slug === slug);
+            if (staticFound) {
+                setArticle(staticFound);
+            } else {
+                throw new Error("Not found");
             }
-        } catch (e) {
-            console.error("Error fetching dynamic news details", e);
         }
+      } catch (err) {
+        console.error("Error loading article:", err);
+        setError(true);
+      } finally {
+        setLoading(false);
       }
-
-      setArticle(found || null);
-
-      if (found) {
-          const relatedItems = allNews
-            .filter((n) => n.id !== found.id && n.category === found.category)
-            .slice(0, 3);
-          setRelated(relatedItems);
-      }
-
-      setLoading(false);
     };
 
-    findArticle();
+    fetchArticle();
   }, [slug]);
 
   if (loading) {
       return (
-        <div className="min-h-screen bg-[#050816] text-white flex items-center justify-center">
-            <div className="animate-pulse">Cargando noticia...</div>
+        <div className="min-h-screen bg-[#0a0a0a] text-white flex items-center justify-center">
+            <div className="flex flex-col items-center gap-4">
+                <div className="w-10 h-10 border-4 border-[#9d4edd] border-t-transparent rounded-full animate-spin" />
+                <p className="text-gray-400">Cargando artículo...</p>
+            </div>
         </div>
       );
   }
 
-  if (!article) {
+  if (error || !article) {
     return (
-      <div className="min-h-screen bg-[#050816] text-white flex flex-col">
+      <div className="min-h-screen bg-[#0a0a0a] text-white flex flex-col">
         <Header />
         <main className="flex-grow flex items-center justify-center">
-            <div className="text-center">
-            <h1 className="text-2xl font-bold mb-2">Noticia no encontrada</h1>
-            <p className="text-gray-400 mb-4">La noticia que buscas no existe o ha sido movida.</p>
+            <div className="text-center p-8">
+            <h1 className="text-3xl font-bold mb-4 text-gray-200">Noticia no encontrada</h1>
+            <p className="text-gray-400 mb-8 max-w-md mx-auto">
+                Es posible que el artículo haya sido eliminado o el enlace sea incorrecto.
+            </p>
             <Link
                 to="/news"
-                className="text-violet-400 hover:text-violet-300 underline"
+                className="px-6 py-3 rounded-xl bg-[#9d4edd] text-white font-semibold hover:bg-[#7B2CBF] transition-colors inline-flex items-center gap-2"
             >
+                <ArrowLeft className="w-4 h-4" />
                 Volver a noticias
             </Link>
             </div>
@@ -87,97 +96,87 @@ const NewsDetail = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-[#050816] via-[#050816] to-[#020617] text-white flex flex-col">
+    <div className="min-h-screen bg-[#0a0a0a] text-white flex flex-col">
       <Header />
 
       <main className="flex-grow pt-24 pb-16">
-        <div className="max-w-4xl mx-auto px-4">
-            {/* Volver */}
-            <div className="mb-4">
-            <Link
-                to="/news"
-                className="inline-flex items-center gap-2 text-sm text-slate-300 hover:text-violet-300"
-            >
-                ← Volver a noticias
-            </Link>
-            </div>
-
-            {/* Cabecera */}
-            <header className="mb-8">
-            <p className="text-xs uppercase tracking-[0.25em] text-slate-400 mb-2">
-                {article.category}
-            </p>
-            <h1 className="text-3xl md:text-4xl font-extrabold mb-3">
-                {article.title}
-            </h1>
-            <div className="flex flex-wrap items-center gap-3 text-xs text-slate-400">
-                <span>{formatDate(article.publishedAt)}</span>
-                <span>•</span>
-                <span>{article.readingTime} min de lectura</span>
-                {article.sourceName && (
-                <>
-                    <span>•</span>
-                    <a
-                    href={article.sourceUrl}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="text-violet-400 hover:text-violet-300 underline"
-                    >
-                    Fuente: {article.sourceName}
-                    </a>
-                </>
-                )}
-            </div>
-            </header>
-
-            {/* Imagen (opcional) */}
-            {article.imageUrl && (
-            <div className="mb-8 overflow-hidden rounded-2xl border border-slate-800">
-                <img
+        {/* Banner Image */}
+        <div className="w-full h-[400px] relative overflow-hidden">
+            <img
                 src={article.imageUrl}
                 alt={article.title}
-                className="w-full h-64 object-cover"
-                onError={(e) => {
-                    e.target.style.display = 'none'; // Hide if fails
-                }}
-                />
-            </div>
-            )}
+                className="w-full h-full object-cover"
+                onError={(e) => e.target.style.display = 'none'}
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] to-transparent opacity-90" />
 
-            {/* Contenido */}
-            <article className="prose prose-invert prose-sm md:prose-base max-w-none prose-headings:text-white prose-p:text-slate-200 prose-a:text-violet-400"
-                dangerouslySetInnerHTML={{ __html: article.content }} // Using HTML for flexibility with mock data
-            >
-            {/* Fallback if content is just text */}
-            {!article.content.includes('<') && article.content.split("\n").map((paragraph, idx) => (
-                <p key={idx}>{paragraph}</p>
-            ))}
+            <div className="absolute bottom-0 left-0 w-full p-4 md:p-8 max-w-4xl mx-auto">
+                <Link to="/news" className="inline-flex items-center gap-2 text-gray-400 hover:text-white mb-6 transition-colors text-sm">
+                    <ArrowLeft className="w-4 h-4" /> Volver a noticias
+                </Link>
+
+                <span className="block text-[#9d4edd] font-bold tracking-wider uppercase text-sm mb-3">
+                    {article.category}
+                </span>
+
+                <h1 className="text-3xl md:text-5xl font-bold leading-tight mb-4 text-white">
+                    {article.title}
+                </h1>
+
+                <div className="flex flex-wrap items-center gap-4 text-sm text-gray-400">
+                    <span>{formatDate(article.publishedAt)}</span>
+                    <span className="w-1 h-1 bg-gray-600 rounded-full" />
+                    <span className="flex items-center gap-1">
+                        <Clock className="w-4 h-4" /> {article.readTime || 5} min lectura
+                    </span>
+                    {article.sourceName && (
+                        <>
+                            <span className="w-1 h-1 bg-gray-600 rounded-full" />
+                            <span>Fuente: {article.sourceName}</span>
+                        </>
+                    )}
+                </div>
+            </div>
+        </div>
+
+        <div className="max-w-4xl mx-auto px-4 mt-8">
+            <article className="prose prose-invert prose-lg max-w-none">
+                {/* Description / Summary */}
+                <p className="text-xl text-gray-300 leading-relaxed font-light mb-8 border-l-4 border-[#9d4edd] pl-6">
+                    {article.description}
+                </p>
+
+                {/* Main Content (HTML safely or Text paragraphs) */}
+                <div dangerouslySetInnerHTML={{ __html: article.content }} className="text-gray-300 leading-8" />
+
+                {(!article.content || article.content.length < 50) && (
+                    <div className="mt-8 p-6 bg-white/5 rounded-xl border border-white/10 text-center">
+                        <p className="text-gray-400 mb-4">
+                            Este es un resumen. Puedes leer el artículo completo en la fuente original.
+                        </p>
+                        <a
+                            href={article.sourceUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-2 px-6 py-3 bg-white text-black font-bold rounded-lg hover:bg-gray-200 transition-colors"
+                        >
+                            Leer artículo completo <ExternalLink className="w-4 h-4" />
+                        </a>
+                    </div>
+                )}
             </article>
 
-            {/* Relacionadas */}
-            {related.length > 0 && (
-            <section className="mt-10 border-t border-slate-800 pt-6">
-                <h2 className="text-sm font-semibold text-slate-200 mb-4">
-                Noticias relacionadas
-                </h2>
-                <div className="grid gap-3 md:grid-cols-2">
-                {related.map((item) => (
-                    <Link
-                    key={item.id}
-                    to={`/news/${item.slug}`}
-                    className="block p-3 rounded-xl bg-slate-900/70 border border-slate-800 hover:border-violet-400/70 hover:bg-slate-900 transition-all text-sm"
-                    >
-                    <p className="font-semibold text-slate-100 mb-1">
-                        {item.title}
-                    </p>
-                    <p className="text-slate-400 text-xs line-clamp-2">
-                        {item.summary}
-                    </p>
-                    </Link>
-                ))}
+            {/* Tags */}
+            <div className="mt-12 pt-8 border-t border-white/10">
+                <h3 className="text-sm font-semibold text-gray-500 uppercase mb-4">Etiquetas</h3>
+                <div className="flex flex-wrap gap-2">
+                    {article.tags?.map((tag, i) => (
+                        <span key={i} className="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-sm text-gray-300">
+                            #{tag}
+                        </span>
+                    ))}
                 </div>
-            </section>
-            )}
+            </div>
         </div>
       </main>
 

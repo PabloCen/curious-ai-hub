@@ -1,4 +1,5 @@
 import News from '../models/News.js';
+import updateNewsJob from '../jobs/newsUpdater.js';
 
 // @desc    Get all news (paginated)
 // @route   GET /api/news
@@ -13,11 +14,9 @@ const getNews = async (req, res) => {
   let query = {};
 
   if (category !== 'all' && category !== 'Todas') {
-      // Handle special "Curiosidades" vs "Noticias"
       if (category === 'Curiosidades') {
           query.category = 'Curiosidades';
       } else {
-          // If filtering by specific category
            query.category = category;
       }
   }
@@ -49,13 +48,28 @@ const getNews = async (req, res) => {
   }
 };
 
+// @desc    Get single news by slug
+// @route   GET /api/news/:slug
+// @access  Public
+const getNewsBySlug = async (req, res) => {
+    try {
+        const article = await News.findOne({ slug: req.params.slug });
+        if (article) {
+            res.json(article);
+        } else {
+            res.status(404).json({ message: 'News article not found' });
+        }
+    } catch (error) {
+        res.status(500).json({ message: 'Error fetching article' });
+    }
+};
+
 // @desc    Trigger manual update (for testing)
 // @route   POST /api/news/update
 // @access  Public (should be protected in prod)
-import updateNewsJob from '../jobs/newsUpdater.js';
 const triggerUpdate = async (req, res) => {
     await updateNewsJob();
     res.json({ message: 'News update triggered' });
 };
 
-export { getNews, triggerUpdate };
+export { getNews, getNewsBySlug, triggerUpdate };
