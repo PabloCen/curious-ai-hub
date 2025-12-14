@@ -17,7 +17,7 @@ const NewsPage = () => {
   const [error, setError] = useState(false);
 
   // Constants
-  const API_URL = "http://localhost:5000/api/news"; // Use env in real app
+  const API_URL = "/api/news";
   const categories = ["Todas", "Noticias Generales", "Herramientas", "Investigación", "Industria", "Noticias IA"];
 
   // Fetch News

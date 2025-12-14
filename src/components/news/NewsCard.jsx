@@ -21,16 +21,30 @@ const NewsCard = ({ item }) => {
       <article className="relative h-full flex flex-col overflow-hidden rounded-2xl bg-[#131313] border border-white/5 hover:border-[#9d4edd]/50 transition-all duration-300 shadow-lg group-hover:shadow-[0_0_30px_rgba(157,78,221,0.2)]">
 
         {/* Image Section */}
-        <div className="h-48 overflow-hidden relative">
-           <img
-             src={imageUrl}
-             alt={item.title}
-             className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-             onError={(e) => {
-               e.target.src = `https://placehold.co/600x400/1a1a1a/FFF?text=AI+News`;
-             }}
-           />
-           <div className="absolute inset-0 bg-gradient-to-t from-[#131313] to-transparent opacity-60" />
+        <div className="h-48 overflow-hidden relative bg-[#1a1a1a]">
+           {imageUrl ? (
+             <img
+               src={imageUrl}
+               alt={item.title}
+               className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+               onError={(e) => {
+                 e.target.style.display = 'none'; // Hide broken image
+                 e.target.nextSibling.style.display = 'flex'; // Show fallback
+               }}
+             />
+           ) : null}
+
+           {/* Fallback container (hidden by default if image loads) */}
+           <div
+             className={`absolute inset-0 flex items-center justify-center bg-[#1a1a1a] ${imageUrl ? 'hidden' : 'flex'}`}
+           >
+              <div className="flex flex-col items-center gap-2 opacity-30">
+                 <div className="w-8 h-8 rounded-full border-2 border-white/20" />
+                 <span className="text-[10px] uppercase tracking-wider font-bold">Curioso AI</span>
+              </div>
+           </div>
+
+           <div className="absolute inset-0 bg-gradient-to-t from-[#131313] to-transparent opacity-60 pointer-events-none" />
 
            {/* Category Badge over Image */}
            <div className="absolute top-3 left-3">

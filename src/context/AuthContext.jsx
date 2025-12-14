@@ -10,7 +10,7 @@ export const AuthProvider = ({ children }) => {
 
   // Determine backend URL (env or default to localhost:5000)
   // In a real Vite app, use import.meta.env.VITE_API_URL
-  const API_URL = 'http://localhost:5000/api/auth';
+  const API_URL = '/api/auth';
 
   useEffect(() => {
     checkUserLoggedIn();

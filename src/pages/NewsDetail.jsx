@@ -23,7 +23,7 @@ const NewsDetail = () => {
   const [error, setError] = useState(false);
 
   // Constants
-  const API_URL = "http://localhost:5000/api/news";
+  const API_URL = "/api/news";
 
   useEffect(() => {
     const fetchArticle = async () => {
