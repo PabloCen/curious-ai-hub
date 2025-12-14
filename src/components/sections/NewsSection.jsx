@@ -1,77 +1,110 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { ArrowRight, Newspaper } from "lucide-react";
 
-const news = [
-  {
-    title: "Nueva herramienta de IA simplifica tareas diarias",
-    date: "02 Nov 2025",
-    summary:
-      "Una nueva IA promete ayudar a estudiantes, trabajadores y curiosos a organizar mejor su día y aprender más rápido.",
-  },
-  {
-    title: "La IA en la educación: ¿oportunidad o riesgo?",
-    date: "28 Oct 2025",
-    summary:
-      "Cada vez más escuelas y cursos incorporan IA para explicar temas complejos con ejemplos simples y visuales.",
-  },
-  {
-    title: "Modelos de imágenes IA cada vez más realistas",
-    date: "20 Oct 2025",
-    summary:
-      "Las IAs de generación de imágenes logran resultados casi fotográficos, útiles para diseño, marketing y creatividad.",
-  },
-  {
-    title: "IAs para trabajar: productividad al siguiente nivel",
-    date: "15 Oct 2025",
-    summary:
-      "Herramientas como asistentes de escritura, resúmenes automáticos y generadores de código ya son parte del día a día.",
-  },
-];
+// Fallback data in case fetch fails
+import { newsData as staticNews } from "../../data/newsData";
 
-function NewsSection() {
+const NewsSection = () => {
+  const navigate = useNavigate();
+  const [news, setNews] = useState([]);
+
+  useEffect(() => {
+    // Try to fetch from generated JSON
+    fetch('/data/news.json')
+      .then(res => {
+        if (!res.ok) throw new Error("Failed to load news");
+        return res.json();
+      })
+      .then(data => {
+        setNews(data.slice(0, 4)); // Get first 4
+      })
+      .catch(err => {
+        console.warn("News fetch failed, using static data", err);
+        setNews(staticNews.slice(0, 4));
+      });
+  }, []);
+
   return (
-    <section className="py-16 px-4 md:px-8">
+    <section className="py-20 px-4 md:px-8 relative overflow-hidden">
+        {/* Background elements */}
+        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-[#0a0a0a] to-[#0f0f1a] -z-10" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-purple-900/10 rounded-full blur-[100px] -z-10" />
+
       <div className="max-w-6xl mx-auto">
-        <h2 className="text-3xl md:text-4xl font-bold text-center mb-6 neon-text-purple">
-          Últimas noticias de IA
-        </h2>
-        <p className="text-center text-sm md:text-base text-gray-300 mb-10 max-w-2xl mx-auto">
-          Una mirada rápida a lo que está pasando en el mundo de la
-          inteligencia artificial: avances, usos reales y curiosidades.
-        </p>
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+            <div className="text-center md:text-left">
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-500/10 border border-purple-500/20 text-purple-400 text-xs font-medium tracking-wide uppercase mb-4">
+                    <Newspaper className="w-3 h-3" />
+                    Actualidad
+                </div>
+                <h2 className="text-3xl md:text-4xl font-bold text-white mb-2">
+                Últimas noticias de IA
+                </h2>
+                <p className="text-gray-400 max-w-xl">
+                Una mirada rápida a lo que está pasando en el mundo de la
+                inteligencia artificial: avances, usos reales y curiosidades.
+                </p>
+            </div>
+
+            <button
+                onClick={() => navigate("/news")}
+                className="hidden md:flex items-center gap-2 text-[#9d4edd] font-semibold hover:text-white transition-colors group"
+            >
+                Ver todas las noticias
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            </button>
+        </div>
 
         <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
-          {news.map((item) => (
+          {news.map((item, index) => (
             <article
-              key={item.title}
-              className="card-glow-border bg-black/40 rounded-2xl overflow-hidden flex flex-col"
+              key={item.id || index}
+              className="card-glow-border bg-[#131313] rounded-2xl overflow-hidden flex flex-col group border border-white/5 hover:border-purple-500/30 transition-all duration-300"
+              style={{ animationDelay: `${index * 0.1}s` }}
             >
-              {/* Imagen placeholder */}
-              <div className="h-32 bg-gradient-to-br from-[#1a0b2e] to-[#7B2CBF]" />
+              {/* Image */}
+              <div className="h-40 bg-gradient-to-br from-[#1a0b2e] to-[#2d1b4e] relative overflow-hidden">
+                   {/* Placeholder logic or actual image if available */}
+                   <div className="absolute inset-0 flex items-center justify-center text-purple-300/20 text-4xl font-bold">
+                        AI
+                   </div>
+                   <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors" />
+              </div>
 
-              <div className="p-4 flex flex-col flex-1">
-                <span className="text-xs text-purple-300 mb-1">{item.date}</span>
-                <h3 className="text-lg font-semibold text-white mb-2">
+              <div className="p-5 flex flex-col flex-1">
+                <div className="flex items-center gap-2 mb-3">
+                    <span className="text-[10px] px-2 py-0.5 rounded bg-white/5 text-gray-400 border border-white/5">
+                        {item.category || "General"}
+                    </span>
+                    <span className="text-xs text-purple-400">
+                        {item.publishedAt ? new Date(item.publishedAt).toLocaleDateString() : "Reciente"}
+                    </span>
+                </div>
+
+                <h3 className="text-lg font-bold text-white mb-2 line-clamp-2 group-hover:text-purple-300 transition-colors">
                   {item.title}
                 </h3>
-                <p className="text-sm text-gray-300 flex-1">{item.summary}</p>
+                <p className="text-sm text-gray-400 flex-1 line-clamp-3 mb-4">{item.summary}</p>
 
                 <button
                   type="button"
-                  className="mt-4 inline-flex items-center gap-2 text-sm font-medium text-[#9d4edd] hover:text-white"
+                  onClick={() => navigate(`/news`)} // Could go to detail if implemented
+                  className="mt-auto inline-flex items-center gap-2 text-sm font-medium text-white/70 hover:text-white transition-colors"
                 >
                   Leer más
-                  <span className="text-base">↗</span>
+                  <span className="text-base text-purple-400">↗</span>
                 </button>
               </div>
             </article>
           ))}
         </div>
 
-        {/* Botón para ir a la página de noticias */}
-        <div className="mt-10 text-center">
+        {/* Mobile Button */}
+        <div className="mt-10 text-center md:hidden">
           <button
-            type="button"
-            className="px-6 py-3 rounded-2xl bg-[#9d4edd] hover:bg-[#7B2CBF] font-semibold text-white shadow-[0_0_18px_rgba(157,78,221,0.7)]"
+            onClick={() => navigate("/news")}
+            className="px-6 py-3 rounded-2xl bg-[#9d4edd] hover:bg-[#7B2CBF] font-semibold text-white shadow-[0_0_18px_rgba(157,78,221,0.7)] w-full"
           >
             Ver todas las noticias
           </button>
@@ -79,6 +112,6 @@ function NewsSection() {
       </div>
     </section>
   );
-}
+};
 
 export default NewsSection;

@@ -6,6 +6,7 @@ import { Helmet } from "react-helmet";
 import Home from "./pages/Home";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
+import ToolsPage from "./pages/ToolsPage";
 import CoursesPage from "./pages/CoursesPage";
 import CourseDetail from './pages/CourseDetail';
 import NewsPage from "./pages/NewsPage";
@@ -30,6 +31,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/tools" element={<ToolsPage />} />
         <Route path="/courses" element={<CoursesPage />} /> 
         <Route path="/courses/:id" element={<CourseDetail />} />
        <Route path="/news" element={<NewsPage />} />
