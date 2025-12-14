@@ -2,8 +2,11 @@ import express from 'express';
 import dotenv from 'dotenv';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
+import cron from 'node-cron';
 import connectDB from './config/db.js';
 import authRoutes from './routes/authRoutes.js';
+import newsRoutes from './routes/newsRoutes.js';
+import updateNews from './jobs/newsUpdater.js';
 
 dotenv.config();
 
@@ -25,10 +28,23 @@ app.use(cors({
 
 // Routes
 app.use('/api/auth', authRoutes);
+app.use('/api/news', newsRoutes);
 
 app.get('/', (req, res) => {
   res.send('API is running...');
 });
+
+// Schedule News Updates (8am, 2pm, 8pm)
+cron.schedule('0 8,14,20 * * *', async () => {
+    console.log('⏰ Running scheduled news update...');
+    await updateNews();
+});
+
+// Run update on startup (for demo purposes) if in dev mode
+if (process.env.NODE_ENV === 'development') {
+    console.log('🚀 Dev mode: Running initial news update...');
+    // updateNews(); // Uncomment to run immediately on start
+}
 
 // Error Handling Middleware
 app.use((err, req, res, next) => {
